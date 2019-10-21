@@ -6,3 +6,6 @@
 
 " Show hidden files
 let NERDTreeShowHidden=1
+
+" Quit on open file
+let NERDTreeQuitOnOpen=1

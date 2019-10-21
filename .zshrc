@@ -16,6 +16,8 @@ if type nvim > /dev/null 2>&1; then
   alias vi='nvim'
 fi
 
+alias gdot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 alias oplint='wget -c https://raw.githubusercontent.com/PyCQA/pylint/master/pylintrc'
 alias opysetup='pipenv install && pipenv shell'
 alias opyinst='pipenv install --dev --pre black && pipenv install --dev neovim pylint ptpython pytest'
@@ -124,8 +126,7 @@ export CLICOLOR=1
 # )
 #export TERM=screen-256color       # for a tmux -2 session (also for screen)
 # Golang
-# export GOPATH=$HOME/Documents/Dev/Golang
-# export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$(go env GOPATH)
 
 # Kubernetes
 if [ $commands[kubectl] ]; then
@@ -140,9 +141,6 @@ fi
 if [[ -e ~/.gruvbox.dircolors ]]; then
   eval $(gdircolors ~/.gruvbox.dircolors)
 fi
-#
-# Add gotools to path
-# export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # Add PostgreSQL binaries to the PAth
 # export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -162,3 +160,6 @@ eval $(thefuck --alias)
 # Load rbenv automatically by appending
 # # the following to ~/.zshrc:
 eval "$(rbenv init -)"
+
+# Add go GOPATH/bin to the path
+PATH=${PATH}:$GOPATH/bin
